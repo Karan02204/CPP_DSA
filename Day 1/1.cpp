@@ -8,5 +8,5 @@ int main(){
     cout << "Enter the second String: ";
     string str2;
     cin >> str2;
-    cout << "Concatenated string :" <<str1 << str2;
+    cout << "Concatenated string: " <<str1 << str2;
 }
