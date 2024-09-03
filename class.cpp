@@ -12,9 +12,9 @@ class student{
 
     student(string na,int a, int r){
         "this will print all the student details";
-        name=na;
-        age=a;
-        roll_no=r;
+        this->name=na;
+        this->age=a;
+        this->roll_no=r;
     }
 
     student (student &r1){
