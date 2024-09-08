@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-//class ClassB;
+class ClassB;
 class ClassA{
     private:
     int numA;
