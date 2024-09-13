@@ -84,6 +84,25 @@ void display(Node* head){
 
     
 }
+
+Node* removeDuplicateFromSorted(Node* head){
+    if(head==NULL) return NULL;
+
+    Node* curr = head;
+
+    while(curr!=NULL){
+        if(curr->next!=NULL && curr->data == curr->next->data){
+            Node* toDelete = curr->next;
+            curr->next=curr->next->next;
+            delete curr->next; 
+        }
+        else{
+            curr=curr->next;
+        }
+    }
+
+    return head;
+}
  
 int main()
 {
