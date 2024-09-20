@@ -1,12 +1,10 @@
-void display(Node* head){
+fstream file("test1.txt",ios::out);
 
-    Node* temp = head;
-
-    while(temp!=NULL){
-        cout << temp->data << " -> ";
-        temp = temp->next;
-    }
-    cout << "NULL" << endl;
-
-    
-}
+    // if(file){
+    //     file << "testing with line 1" << endl;
+    //     file.close();;
+    // }
+    // else{
+    //     cout << "Error in opening file" << endl;
+    //     return -1;
+    // }
