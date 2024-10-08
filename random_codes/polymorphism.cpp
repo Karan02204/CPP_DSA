@@ -38,14 +38,14 @@ class Counter {
 
 class Base{
     public:
-    void print(){
+    virtual void print(){
         cout << "from base";
     }
 };
 
 class Derived : public Base {
     public:
-    void print(){
+    void print() override{
         cout << "From derived";
     }
 };
