@@ -75,6 +75,26 @@ void sumatlevel(Node* root ,int k){
 
     cout << sum << endl;
 }
+
+int countNode(Node* root){
+    if(root == NULL) return 0;
+    return 1 + countNode(root->left) + countNode(root->right);
+}
+
+int sumoftree(Node* root){
+    if(root == NULL) return 0;
+    return root->data + sumoftree(root->left) + sumoftree(root->right);
+}
+
+int heightoftree(Node* root){
+    if(root == NULL) return 0;
+    
+    int left = heightoftree(root->left);
+    int right = heightoftree(root->right);
+
+    return max(left,right)+1;
+}
+
 int main()
 {
     Node* root = new Node(1);
@@ -85,5 +105,7 @@ int main()
     root->right->left = new Node(6);
     root->right->right= new Node(7);
 
-    sumatlevel(root,3);
+    // cout << countNode(root) << endl;
+    // cout << sumoftree(root);
+    cout << heightoftree(root);
 }
