@@ -43,6 +43,74 @@ void printLevelOrder(Node* root){
     }
 }
 
+void rightview(Node* root){
+    if(root == NULL){
+        return ;
+    }
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        // we will not add null in queue , we will calculate the size of queue and check how many nodes are stored and traverse over it
+        int size = q.size();
+
+        for(int i = 0;i<size;i++){
+            //create a current pointer which will start from the front of the queue
+
+            Node* curr = q.front();
+            q.pop();
+
+            if(i==size-1){
+                cout << curr->data << " ";
+            }
+
+            // then we will go on the left and right of the current node
+
+            if(curr->left){
+                q.push(curr->left);
+            }
+            if(curr->right){
+                q.push(curr->right);
+            }
+        }
+    }
+}
+
+void leftview(Node* root){
+    if(root == NULL){
+        return ;
+    }
+
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty()){
+        // we will not add null in queue , we will calculate the size of queue and check how many nodes are stored and traverse over it
+        int size = q.size();
+
+        for(int i = 0;i<size;i++){
+            //create a current pointer which will start from the front of the queue
+
+            Node* curr = q.front();
+            q.pop();
+
+            if(i==0){
+                cout << curr->data << " ";
+            }
+
+            // then we will go on the left and right of the current node
+
+            if(curr->left){
+                q.push(curr->left);
+            }
+            if(curr->right){
+                q.push(curr->right);
+            }
+        }
+    }
+}
+
 void sumatlevel(Node* root ,int k){
     int count = 0;
     int sum = 0;
@@ -95,6 +163,42 @@ int heightoftree(Node* root){
     return max(left,right)+1;
 }
 
+bool getPath(Node* root, int key , vector<int>& path){
+    if(root == NULL){
+        return false;
+    }
+    
+    path.push_back(root->data);
+    if(root->data == key){
+        return true;
+    }
+    
+    if(getPath(root->left, key , path) || getPath(root->right , key , path)){
+        return true;
+    }
+
+    path.pop_back();
+    return false;
+}
+
+int lowestcommonAncestor(Node* root,int node1 , int node2){
+    vector<int> path1;
+    vector<int> path2;
+
+    if(!getPath(root , node1 , path1)  && !getPath(root , node2 , path2)){
+        return -1;
+    }
+
+    int pathchange;
+    for(pathchange = 0; pathchange<path1.size() && path2.size();pathchange++){
+        if(path1[pathchange] != path2[pathchange]){
+            break;
+        }
+    }
+
+    return path1[pathchange];
+}
+
 int main()
 {
     Node* root = new Node(1);
@@ -103,9 +207,17 @@ int main()
     root->left->left = new Node(4);
     root->left->right = new Node(5);
     root->right->left = new Node(6);
-    root->right->right= new Node(7);
+    root->left->left->left= new Node(7);
+    root->left->left->right= new Node(8);
 
     // cout << countNode(root) << endl;
     // cout << sumoftree(root);
-    cout << heightoftree(root);
+    int lca = lowestcommonAncestor(root, 4,5);
+
+    if(lca == -1){
+        cout << "No common ancestor found" << endl;
+    }
+    else{
+        cout << "LCA is : " << lca << endl;
+    }
 }
