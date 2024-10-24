@@ -212,12 +212,14 @@ int main()
 
     // cout << countNode(root) << endl;
     // cout << sumoftree(root);
-    int lca = lowestcommonAncestor(root, 4,5);
+    // int lca = lowestcommonAncestor(root, 4,5);
 
-    if(lca == -1){
-        cout << "No common ancestor found" << endl;
-    }
-    else{
-        cout << "LCA is : " << lca << endl;
-    }
+    // if(lca == -1){
+    //     cout << "No common ancestor found" << endl;
+    // }
+    // else{
+    //     cout << "LCA is : " << lca << endl;
+    // }
+
+    printLevelOrder(root);
 }
