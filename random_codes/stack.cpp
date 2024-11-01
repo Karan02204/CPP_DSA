@@ -2,6 +2,39 @@
 #include <stack>
 using namespace std;
 
+class Mystack
+    {
+        int *arr;
+        int size;
+        int top;
+
+    public:
+        Mystack()
+        {
+            arr = new int[size];
+            top = -1;
+        }
+
+        void push(int val)
+        {
+            if (top == size - 1)
+            {
+                cout << "Stack is full" << endl;
+                return;
+            }
+            top++;
+            arr[top] = val;
+        }
+
+        int pop(){
+            if(top==-1){
+                cout<<"Stack is empty"<<endl;
+            }
+            return arr[top--];
+        }
+    };
+    
+    
 int main()
 {
     // stack<int> st;
@@ -16,27 +49,5 @@ int main()
 
     // creating stack using arr
 
-    class Mystack
-    {
-        int *arr;
-        int size;
-        int top;
-
-    public:
-        Mystack()
-        {
-            arr = new int[size];
-            top = -1;
-        }
-    };
-    void push(int val)
-    {
-        if (top == size - 1)
-        {
-            cout << "Stack is full" << endl;
-            return;
-        }
-        top++;
-        arr[top] = val;
-    }
+    
 }
