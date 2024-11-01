@@ -161,6 +161,79 @@ Node* deleteBST(Node* root, int val){
     }
 }
 
+bool isbst(Node* root , int min , int max){
+    if(root==NULL) return true;
+    if(root->data > min && root->data < max){
+        bool left = isbst(root->left,min,root->data);
+        bool right = isbst(root->right,root->data,max);
+        return left && right;;
+    }
+    else{
+        return false;
+    }
+}
+
+void inordertraversal(Node* root , int& k , int& result){
+    if(root == NULL) return;
+
+    inordertraversal(root->left,k,result);
+    k--;
+    if(k == 0){
+        result =  root->data;
+        return;
+    }
+
+    inordertraversal(root->right,k,result);
+}
+int kMinElement(Node* root , int k){
+    int result = -1;
+    inordertraversal(root,k,result);
+    return result;
+}
+void inorder(Node* root,vector<int>& vec){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left,vec);
+    vec.push_back(root->data);
+    inorder(root->right,vec);
+}
+
+bool twosumbst(Node* root,int target){
+    vector<int> inorderval;
+
+    inorder(root,inorderval);
+
+    int i =0;
+    int j = inorderval.size()-1;
+
+    while(i<j){
+        int sum = inorderval[i] + inorderval[j];
+        if(sum == target){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+}
+
+Node* flatten(Node* root, vector<int>& vec){
+    
+    vector<int> inorderval;
+    inorder(root, inorderval);
+
+    Node* newroot = new Node(inorderval[0]);
+    Node* curr = newroot;
+
+    for(int i=1;i<inorderval.size();i++){
+        Node* temp = new Node(inorderval[i]);
+        curr->right = temp;
+        curr->left = NULL;
+        curr = temp;    
+    }
+    return newroot;
+}
 int main(){
     Node* root = NULL;
     root = insertBST(root,5);
@@ -173,16 +246,17 @@ int main(){
     insertBST(root,9);
     insertBST(root,10);
 
-    inOrder(root);
-    cout << endl;
-    deleteBST(root,3);
-    inOrder(root);
+    // inOrder(root);
+    // cout << endl;
+    // deleteBST(root,3);
+    // inOrder(root);
     // if(binarySearch(root,8)){
     //     cout << "Element found in the BST" << endl;
     // }
     // else{
     //     cout << "Element not found" << endl;
     // }
-
+    vector<int> vec1;
+    cout << flatten(root,vec1);
     
 }
