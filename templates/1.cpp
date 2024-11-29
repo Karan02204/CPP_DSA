@@ -22,7 +22,7 @@ class Calculate{
 template <class T>
 void Calculate<T>::sub(){
     T diff = x - y;
-    cout << "Difference of " << x << " and " << y << " is " << diff
+    cout << "Difference of " << x << " and " << y << " is " << diff;
 }
 int main()
 {
