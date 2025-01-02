@@ -256,7 +256,9 @@ int main(){
     // else{
     //     cout << "Element not found" << endl;
     // }
-    vector<int> vec1;
-    cout << flatten(root,vec1);
+    // vector<int> vec1;
+    // cout << flatten(root,vec1);
+
+    printLevelOrder(root);
     
 }
